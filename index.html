@@ -1,30 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>QUASAR TERMINAL 😎</title>
+  <title>QUASAR CHAOS SYSTEM 💥📱</title>
+
   <style>
     body {
       margin: 0;
       background: black;
       color: #00ff9f;
       font-family: monospace;
+      text-align: center;
       overflow: hidden;
     }
 
-    .glow {
+    h1 {
       text-shadow: 0 0 10px #00ff9f;
-    }
-
-    .center {
-      text-align: center;
-      margin-top: 15vh;
     }
 
     .box {
       border: 1px solid #00ff9f;
-      padding: 20px;
-      margin: 20px;
-      box-shadow: 0 0 20px #00ff9f;
+      padding: 10px;
+      margin: 10px auto;
+      width: 300px;
+      box-shadow: 0 0 10px #00ff9f;
+    }
+
+    img {
+      width: 200px;
+      transition: all 0.3s ease;
+    }
+
+    .explode {
+      animation: explode 0.6s forwards;
+    }
+
+    @keyframes explode {
+      0% { transform: scale(1); filter: brightness(1); }
+      50% { transform: scale(1.5) rotate(10deg); filter: brightness(3); }
+      100% { transform: scale(0) rotate(720deg); opacity: 0; }
     }
 
     button {
@@ -32,6 +45,7 @@
       color: #00ff9f;
       border: 1px solid #00ff9f;
       padding: 10px;
+      margin: 5px;
       cursor: pointer;
     }
 
@@ -40,75 +54,57 @@
       color: black;
     }
 
-    .scanline {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-        rgba(255,255,255,0.05),
-        rgba(0,0,0,0)
-      );
-      animation: scan 4s infinite;
-      pointer-events: none;
-    }
-
-    @keyframes scan {
-      0% { transform: translateY(-100%); }
-      100% { transform: translateY(100%); }
-    }
-
-    .glitch {
-      animation: glitch 1s infinite;
-    }
-
-    @keyframes glitch {
-      0% { transform: translate(0); }
-      20% { transform: translate(-2px, 2px); }
-      40% { transform: translate(2px, -2px); }
-      60% { transform: translate(-1px, 1px); }
-      80% { transform: translate(1px, -1px); }
-      100% { transform: translate(0); }
-    }
   </style>
 </head>
 
 <body>
 
-<div class="scanline"></div>
+<h1>QUASAR CHAOS LAB 💚💥</h1>
 
-<div class="center">
-  <h1 class="glitch glow">QUASAR SYSTEM ONLINE</h1>
-  <p id="text"></p>
-
-  <div class="box">
-    <p>STATUS: <span class="glow">ACTIVE 😎</span></p>
-    <p>POWER LEVEL: OVER 9000</p>
-    <p>WEBSITE MODE: HACKER EDITION</p>
-  </div>
-
-  <button onclick="boom()">CLICK FOR CHAOS</button>
+<div class="box" id="note2Box">
+  <p>📱 NOTE II</p>
+  <img id="note2Img" src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Samsung_Galaxy_Note_II.png">
 </div>
 
+<div class="box" id="note7Box">
+  <p>💣 NOTE 7</p>
+  <img id="note7Img" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Samsung_Galaxy_Note_7.png">
+</div>
+
+<button onclick="explodeNote2()">BOOM NOTE II 🔊</button>
+<button onclick="explodeNote7()">BOOM NOTE 7 💣</button>
+<button onclick="resetAll()">RESET 🔄</button>
+
+<!-- SOUND -->
+<audio id="boomSound">
+  <source src="https://www.soundjay.com/explosion/sounds/explosion-01.mp3" type="audio/mpeg">
+</audio>
+
 <script>
-let i = 0;
-let msg = "Welcome to your upgraded website...";
 
-function type() {
-  if (i < msg.length) {
-    document.getElementById("text").innerHTML += msg.charAt(i);
-    i++;
-    setTimeout(type, 80);
-  }
+function playBoom() {
+  let sound = document.getElementById("boomSound");
+  sound.currentTime = 0;
+  sound.play();
 }
-type();
 
-function boom() {
-  document.body.style.background = 
-    "radial-gradient(circle, #00ff9f, black)";
-  setTimeout(() => {
-    document.body.style.background = "black";
-  }, 500);
+function explodeNote2() {
+  playBoom();
+  let img = document.getElementById("note2Img");
+  img.classList.add("explode");
 }
+
+function explodeNote7() {
+  playBoom();
+  let img = document.getElementById("note7Img");
+  img.classList.add("explode");
+}
+
+function resetAll() {
+  document.getElementById("note2Img").classList.remove("explode");
+  document.getElementById("note7Img").classList.remove("explode");
+}
+
 </script>
 
 </body>
