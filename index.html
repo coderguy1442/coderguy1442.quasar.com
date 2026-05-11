@@ -1,10 +1,115 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Cool Site</title>
+  <title>QUASAR TERMINAL 😎</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: #00ff9f;
+      font-family: monospace;
+      overflow: hidden;
+    }
+
+    .glow {
+      text-shadow: 0 0 10px #00ff9f;
+    }
+
+    .center {
+      text-align: center;
+      margin-top: 15vh;
+    }
+
+    .box {
+      border: 1px solid #00ff9f;
+      padding: 20px;
+      margin: 20px;
+      box-shadow: 0 0 20px #00ff9f;
+    }
+
+    button {
+      background: black;
+      color: #00ff9f;
+      border: 1px solid #00ff9f;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #00ff9f;
+      color: black;
+    }
+
+    .scanline {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        rgba(255,255,255,0.05),
+        rgba(0,0,0,0)
+      );
+      animation: scan 4s infinite;
+      pointer-events: none;
+    }
+
+    @keyframes scan {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100%); }
+    }
+
+    .glitch {
+      animation: glitch 1s infinite;
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(2px, -2px); }
+      60% { transform: translate(-1px, 1px); }
+      80% { transform: translate(1px, -1px); }
+      100% { transform: translate(0); }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>test!</h1>
-  <p>This is my website!</p>
+
+<div class="scanline"></div>
+
+<div class="center">
+  <h1 class="glitch glow">QUASAR SYSTEM ONLINE</h1>
+  <p id="text"></p>
+
+  <div class="box">
+    <p>STATUS: <span class="glow">ACTIVE 😎</span></p>
+    <p>POWER LEVEL: OVER 9000</p>
+    <p>WEBSITE MODE: HACKER EDITION</p>
+  </div>
+
+  <button onclick="boom()">CLICK FOR CHAOS</button>
+</div>
+
+<script>
+let i = 0;
+let msg = "Welcome to your upgraded website...";
+
+function type() {
+  if (i < msg.length) {
+    document.getElementById("text").innerHTML += msg.charAt(i);
+    i++;
+    setTimeout(type, 80);
+  }
+}
+type();
+
+function boom() {
+  document.body.style.background = 
+    "radial-gradient(circle, #00ff9f, black)";
+  setTimeout(() => {
+    document.body.style.background = "black";
+  }, 500);
+}
+</script>
+
 </body>
 </html>
